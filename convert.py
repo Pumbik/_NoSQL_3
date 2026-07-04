@@ -1,8 +1,12 @@
 # convert.py — запустіть один раз перед завантаженням
 import csv
+import os
+
+# Створюємо директорію 'import', якщо вона не існує
+os.makedirs('import', exist_ok=True)
 
 # movies.dat: MovieID::Title::Genres
-with open('movies.dat', encoding='latin-1') as f_in, \\
+with open('import/movies.dat', encoding='latin-1') as f_in, \
      open('import/movies.csv', 'w', newline='', encoding='utf-8') as f_out:
     writer = csv.writer(f_out)
     writer.writerow(['movieId', 'title', 'genres'])
@@ -11,7 +15,7 @@ with open('movies.dat', encoding='latin-1') as f_in, \\
         writer.writerow(parts)
 
 # ratings.dat: UserID::MovieID::Rating::Timestamp
-with open('ratings.dat', encoding='latin-1') as f_in, \\
+with open('import/ratings.dat', encoding='latin-1') as f_in, \
      open('import/ratings.csv', 'w', newline='', encoding='utf-8') as f_out:
     writer = csv.writer(f_out)
     writer.writerow(['userId', 'movieId', 'rating', 'timestamp'])
@@ -20,7 +24,7 @@ with open('ratings.dat', encoding='latin-1') as f_in, \\
         writer.writerow(parts)
 
 # users.dat: UserID::Gender::Age::Occupation::Zip
-with open('users.dat', encoding='latin-1') as f_in, \\
+with open('import/users.dat', encoding='latin-1') as f_in, \
      open('import/users.csv', 'w', newline='', encoding='utf-8') as f_out:
     writer = csv.writer(f_out)
     writer.writerow(['userId', 'gender', 'age', 'occupation'])
